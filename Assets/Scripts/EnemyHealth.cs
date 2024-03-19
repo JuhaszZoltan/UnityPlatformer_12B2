@@ -26,7 +26,8 @@ public class EnemyHealth : MonoBehaviour
 
     private void MakeDead()
     {
-        Destroy(gameObject);
+        if (gameObject.transform.parent != null) Destroy(gameObject.transform.parent.gameObject);
+        else Destroy(gameObject);
         Instantiate(destroyFX, transform.position, transform.rotation);
     }
 }
