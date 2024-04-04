@@ -17,6 +17,7 @@ public class ProjectileController : MonoBehaviour
 
     public void Stop()
     {
+        transform.localRotation = Quaternion.Euler(0, 0, -90);
         audioSource.mute = true;
         rigidbody2d.velocity = new(0, 0);
     }
