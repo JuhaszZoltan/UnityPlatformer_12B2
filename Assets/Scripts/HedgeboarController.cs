@@ -29,6 +29,7 @@ public class HedgeboarController : MonoBehaviour
 
     private void FlipBoar()
     {
+        facingRight = !facingRight;
         hedgeboarGraphics.transform.localScale = new(
             x: hedgeboarGraphics.transform.localScale.x * -1,
             y: hedgeboarGraphics.transform.localScale.y,

@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
         rigidbody2d.velocity = new(
             x: move * maxSpeed,
             y: rigidbody2d.velocity.y);
+
         if ((move > 0 && !isFacingRight) || (move < 0 && isFacingRight)) Flip();
 
         isGrounded = Physics2D.OverlapCircle(groundChecker.position, .15f, groundLayer);
