@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class HedgeboarController : MonoBehaviour
 {
-    [SerializeField] private GameObject hedgeboarGraphics;
+    //[SerializeField] private GameObject hedgeboarGraphics;
     [SerializeField] private float speed = 7f;
 
     private Animator animator;
@@ -71,12 +71,17 @@ public class HedgeboarController : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D other)
+    {
+
+    }
+
     private void FlipBoar()
     {
         facingRight = !facingRight;
-        hedgeboarGraphics.transform.localScale = new(
-            x: hedgeboarGraphics.transform.localScale.x * -1,
-            y: hedgeboarGraphics.transform.localScale.y,
-            z: hedgeboarGraphics.transform.localScale.z);
+        transform.localScale = new(
+            x: transform.localScale.x * -1,
+            y: transform.localScale.y,
+            z: transform.localScale.z);
     }
 }

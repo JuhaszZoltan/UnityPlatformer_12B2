@@ -29,19 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (isGrounded && Input.GetAxis("Jump") > 0)
-        {
-            isGrounded = false;
-            animator.SetBool("isGrounded", false);
-            rigidbody2d.AddForce(new(x:0, y:jumpHeight));
-        }
-
-        if (Time.time >= nextFire && Input.GetAxisRaw("Fire1") != 0)
-        {
-            nextFire = Time.time + fireRate;
-            Instantiate(projectile, gunMuzzle.position, 
-                Quaternion.Euler(x: 0, y: 0, z: isFacingRight ? 0 : 180));
-        }
+        
     }
 
     private void FixedUpdate()
@@ -51,6 +39,20 @@ public class PlayerController : MonoBehaviour
         rigidbody2d.velocity = new(
             x: move * maxSpeed,
             y: rigidbody2d.velocity.y);
+
+        if (isGrounded && Input.GetAxis("Jump") > 0)
+        {
+            isGrounded = false;
+            animator.SetBool("isGrounded", false);
+            rigidbody2d.AddForce(new(x: 0, y: jumpHeight));
+        }
+
+        if (Time.time >= nextFire && Input.GetAxisRaw("Fire1") != 0)
+        {
+            nextFire = Time.time + fireRate;
+            Instantiate(projectile, gunMuzzle.position,
+                Quaternion.Euler(x: 0, y: 0, z: isFacingRight ? 0 : 180));
+        }
 
         if ((move > 0 && !isFacingRight) || (move < 0 && isFacingRight)) Flip();
 
