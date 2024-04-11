@@ -4,8 +4,12 @@ using UnityEngine.UI;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private float maximumHealth = 5f;
-    [SerializeField] private GameObject destroyFX;
+    [SerializeField] private bool canDrop = true;
+    [SerializeField] private int dropChance = 70;
+
     [SerializeField] private Slider healthBar;
+    [SerializeField] private GameObject destroyFX;
+    [SerializeField] private GameObject healthDrop;
 
     private float currentHealth;
 
@@ -26,8 +30,14 @@ public class EnemyHealth : MonoBehaviour
 
     private void MakeDead()
     {
+        Instantiate(destroyFX, transform.position, transform.rotation);
+
+        if (canDrop && Random.Range(0, 100) < dropChance)
+        {
+            Instantiate(healthDrop, transform.position, transform.rotation);
+        }
+
         if (gameObject.transform.parent != null) Destroy(gameObject.transform.parent.gameObject);
         else Destroy(gameObject);
-        Instantiate(destroyFX, transform.position, transform.rotation);
     }
 }
